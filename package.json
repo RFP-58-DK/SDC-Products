@@ -1,0 +1,25 @@
+{
+  "name": "sdc-products",
+  "version": "1.0.0",
+  "description": "Products API for SDC",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RFP-58-DK/SDC-Products.git"
+  },
+  "author": "Grant Sanchez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RFP-58-DK/SDC-Products/issues"
+  },
+  "homepage": "https://github.com/RFP-58-DK/SDC-Products#readme",
+  "devDependencies": {
+    "webpack": "^5.70.0"
+  },
+  "dependencies": {
+    "postgres": "^1.0.2"
+  }
+}
