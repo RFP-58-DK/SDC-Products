@@ -4,9 +4,9 @@ const config = require('../myConfig.js');
 const pool = new Pool({
   host: 'localhost',
   port: 5432,
-  database: 'product_information',
-  user: 'granchez77',
-  password: config
+  database: config.database,
+  user: config.username,
+  password: config.password
 })
 
 module.exports = pool;
