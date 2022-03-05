@@ -20,7 +20,7 @@ CREATE TABLE product_information (
 
 CREATE TABLE product_styles (
  id BIGSERIAL PRIMARY KEY,
- style_id INTEGER,
+ product_id INTEGER,
  name VARCHAR,
  sale_price INTEGER,
  original_price INTEGER,
@@ -68,10 +68,10 @@ CREATE TABLE skus (
 -- ALTER TABLE skus ADD CONSTRAINT skus_pkey
 -- ALTER TABLE skus ADD CONSTRAINT skus_pkey PRIMARY KEY (id);
 
--- ALTER TABLE product_styles ADD CONSTRAINT product_styles_style_id_fkey FOREIGN KEY (style_id) REFERENCES product_information(id);
--- ALTER TABLE features ADD CONSTRAINT features_id_fkey FOREIGN KEY (id) REFERENCES product_information(id);
--- ALTER TABLE photos ADD CONSTRAINT photos_style_id_fkey FOREIGN KEY (style_id) REFERENCES product_styles(id);
--- ALTER TABLE skus ADD CONSTRAINT skus_style_id_fkey FOREIGN KEY (style_id) REFERENCES product_styles(id);
+ALTER TABLE product_styles ADD CONSTRAINT product_styles_style_id_fkey FOREIGN KEY (product_id) REFERENCES product_information(id);
+ALTER TABLE features ADD CONSTRAINT features_id_fkey FOREIGN KEY (product_id) REFERENCES product_information(id);
+ALTER TABLE photos ADD CONSTRAINT photos_style_id_fkey FOREIGN KEY (style_id) REFERENCES product_styles(id);
+ALTER TABLE skus ADD CONSTRAINT skus_style_id_fkey FOREIGN KEY (style_id) REFERENCES product_styles(id);
 -- CREATE TABLE IF NOT EXISTS product_information (
 --   id SERIAL PRIMARY KEY,
 --   -- campus VARCHAR (250),
