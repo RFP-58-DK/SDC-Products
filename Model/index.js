@@ -57,7 +57,7 @@ module.exports = {
 
   getProductStyles: (callback) => {
   const syntax =
-`   SELECT product_styles.product_id,
+`  SELECT product_styles.product_id,
       (SELECT json_agg(
         json_build_object(
           'style_id', product_styles.id,
@@ -72,7 +72,13 @@ module.exports = {
                 'url', photos.url
               )
             ) AS photos FROM photos WHERE photos.style_id=product_styles.id
-          )
+          ),
+          'skus', (SELECT json_object_agg(
+            skus.id, (SELECT json_build_object(
+              'quantity', skus.quantity,
+              'size', skus.size
+            ) FROM skus WHERE style_id=product_styles.id LIMIT 1)
+          ) FROM skus WHERE style_id IN (SELECT style_id FROM skus WHERE style_id=product_styles.id))
         )
       ) AS results FROM product_styles WHERE product_id=1)
       FROM product_styles WHERE product_id=1;
@@ -80,6 +86,7 @@ module.exports = {
 
     db.query(syntax, (err, styles) => {
       if (err) {
+        console.log(err);
         callback(err);
       } else {
         callback(null, styles.rows);
