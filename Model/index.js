@@ -9,31 +9,9 @@ module.exports = {
                             'value', features.value
                           )
                         ) AS features FROM product_information JOIN features
-                        ON product_information.id=features.product_id WHERE product_information.id = 1 GROUP BY product_information.id`
-    // const syntax = `SELECT * FROM product_information JOIN features ON product_information.id=features.product_id WHERE product_information.id = ${params.product_id || 1}`;
-    // const syntax =
-    // `SELECT *, 'features', json_agg(
-    //  features
-    // )
-    //   FROM product_information WHERE product_information.id = 1`;
-    // const syntax = `
-    // select json_build_object(
-    //   'id', product_information.id
-    // ) WHERE id = 1
-    // `
+                        ON product_information.id=features.product_id WHERE product_information.id = ${params.product_id || 1} GROUP BY product_information.id`
 
 
-// `    SELECT product_information.*,
-//     //create an array of objects where the key is features
-//     json_agg(
-//       json_object_agg(
-//         'feature', features.feature,
-//         'value', features.value
-//       )
-//       //call array of objects features
-//       //create a join between features and products witha condition where id matches
-//       //and where the id is the query parameter id from the request
-//     ) AS features FROM product_information JOIN features ON product_information.id=features.product_id WHERE product_information.id = 1 GROUP BY product_information.id`
 
     db.query(syntax, (err, information) => {
       if (err) {
@@ -78,7 +56,28 @@ module.exports = {
   },
 
   getProductStyles: (callback) => {
-    const syntax = 'SELECT * FROM product_styles LIMIT 10';
+  const syntax =
+`   SELECT product_styles.product_id,
+      (SELECT json_agg(
+        json_build_object(
+          'style_id', product_styles.id,
+          'name', product_styles.name,
+          'original_price', product_styles.original_price,
+          'sale_price', product_styles.sale_price,
+          'default?', product_styles.default_,
+          'photos', (SELECT
+            json_agg(
+              json_build_object(
+                'thumbnail_url', photos.thumbnail_url,
+                'url', photos.url
+              )
+            ) AS photos FROM photos WHERE photos.style_id=product_styles.id
+          )
+        )
+      ) AS results FROM product_styles WHERE product_id=1)
+      FROM product_styles WHERE product_id=1;
+`
+
     db.query(syntax, (err, styles) => {
       if (err) {
         callback(err);
@@ -87,15 +86,4 @@ module.exports = {
       }
     })
   }
-  // postMovie: (movie, callback) => {
-  //   const syntax = 'INSERT INTO movies (title) VALUES(?)';
-  //   const movieParam = movie.body.title;
-  //   db.query(syntax, movieParam, (err, movies) => {
-  //     if (err) {
-  //       callback(err);
-  //     } else {
-  //       callback(null, movies);
-  //     }
-  //   })
-  // }
 }

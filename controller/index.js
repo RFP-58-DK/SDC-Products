@@ -37,7 +37,7 @@ module.exports= {
         product_id: params.product_id,
         results: styles
       }
-      res.send(response);
+      res.send(styles);
     })
   }
   // postMovie: (req, res) => {
