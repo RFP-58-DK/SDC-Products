@@ -3,19 +3,23 @@ const model = require('../Model');
 
 module.exports= {
   getProductInfo: (req, res) => {
-    model.getProductInfo((err, information) => {
+    const params = req.query;
+    model.getProductInfo(params, (err, information) => {
+
       res.send(information);
     })
   },
 
   getPhotos: (req, res) => {
     model.getPhotos((err, photos) => {
+      const params = req.query
       res.send(photos);
     })
   },
 
   getFeatures: (req, res) => {
-    model.getFeatures((err, features) => {
+    const params = req.query;
+    model.getFeatures(params, (err, features) => {
       res.send(features);
     })
   },
@@ -27,8 +31,13 @@ module.exports= {
   },
 
   getProductStyles: (req, res) => {
+    const params = req.query;
     model.getProductStyles((err, styles) => {
-      res.send(styles);
+      const response = {
+        product_id: params.product_id,
+        results: styles
+      }
+      res.send(response);
     })
   }
   // postMovie: (req, res) => {

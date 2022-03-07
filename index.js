@@ -15,11 +15,11 @@ app.listen(port, () => {
   console.log(`Listening at http://localhost:${port}`)
 });
 
-app.get('/product_information', controller.getProductInfo);
+app.get('/product_information', (req, res) => {controller.getProductInfo(req, res)});
 
 app.get('/photos', controller.getPhotos);
 
-app.get('/features', controller.getFeatures);
+app.get('/features', (req, res) => {controller.getFeatures(req, res)});
 
 app.get('/skus', controller.getSkus);
 
