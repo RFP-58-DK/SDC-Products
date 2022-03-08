@@ -10,8 +10,6 @@ app.get('/product_information', async (req, res) => {
   res.json({message: 'pass!'})
 });
 
-
-
 test('Should successfully send a GET request', async () => {
   try{
     const response = await request.get('/product_information')

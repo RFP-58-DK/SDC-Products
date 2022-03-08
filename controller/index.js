@@ -5,14 +5,13 @@ module.exports= {
   getProductInfo: (req, res) => {
     const params = req.query;
     model.getProductInfo(params, (err, information) => {
-
       res.send(information);
     })
   },
 
   getProductStyles: (req, res) => {
     const params = req.query;
-    model.getProductStyles((err, styles) => {
+    model.getProductStyles(params, (err, styles) => {
       res.send(styles);
     })
   }
