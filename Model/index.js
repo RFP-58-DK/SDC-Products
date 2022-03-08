@@ -81,7 +81,7 @@ module.exports = {
           ) FROM skus WHERE style_id IN (SELECT style_id FROM skus WHERE style_id=product_styles.id))
         )
       ) AS results FROM product_styles WHERE product_id=1)
-      FROM product_styles WHERE product_id=1;
+      FROM product_styles WHERE ${params.product_id || 1};
 `
 
     db.query(syntax, (err, styles) => {
