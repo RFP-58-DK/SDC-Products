@@ -2,7 +2,7 @@
   "name": "sdc-products",
   "version": "1.0.0",
   "description": "Products API for SDC",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",

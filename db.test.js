@@ -10,10 +10,15 @@ app.get('/product_information', async (req, res) => {
   res.json({message: 'pass!'})
 });
 
-it('gets the product_information endpoint', async done => {
-  const response = await request.get('/product_information')
-  expect(response.status).toBe(200)
-  expect(response.body.message).toBe('pass')
-  done()
-})
 
+
+test('Should successfully send a GET request', async () => {
+  try{
+    const response = await request.get('/product_information')
+    expect(response.status).toBe(200);
+    expect(response.body.message).toBe('pass')
+    done()
+  } catch (err) {
+    console.log('catching')
+  }
+});

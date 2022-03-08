@@ -11,9 +11,9 @@ app.use(express.urlencoded({
 }));
 
 app.use(express.json({}));
-app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}`)
-});
+// app.listen(port, () => {
+//   console.log(`Listening at http://localhost:${port}`)
+// });
 
 app.get('/product_information', (req, res) => {controller.getProductInfo(req, res)});
 
