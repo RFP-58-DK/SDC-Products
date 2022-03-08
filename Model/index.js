@@ -80,7 +80,7 @@ module.exports = {
             ) FROM skus WHERE style_id=product_styles.id LIMIT 1)
           ) FROM skus WHERE style_id IN (SELECT style_id FROM skus WHERE style_id=product_styles.id))
         )
-      ) AS results FROM product_styles WHERE product_id=1)
+      ) AS results FROM product_styles WHERE product_id=${params.product_id || 1})
       FROM product_styles WHERE product_id=${params.product_id || 1};
 `
 
