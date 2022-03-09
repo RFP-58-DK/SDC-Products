@@ -1,0 +1,26 @@
+speed.txt
+
+product_information:
+  Seq Scan on product_information  (cost=0.00..49153.29 rows=999929 width=280) (actual time=0.004..215.139 rows=1000011 loops=1)
+  Planning Time: 0.041 ms
+  Execution Time: 279.509 ms
+
+product_styles:
+  Seq Scan on product_styles  (cost=0.00..33932.02 rows=1958102 width=30) (actual time=0.007..220.992 rows=1958102 loops=1)
+  Planning Time: 0.039 ms
+  Execution Time: 344.872 ms
+
+features:
+  Seq Scan on features  (cost=0.00..39994.79 rows=2219279 width=31) (actual time=0.019..251.045 rows=2219279 loops=1)
+  Planning Time: 0.045 ms
+  Execution Time: 393.256 ms
+
+skus:
+  Seq Scan on skus  (cost=0.00..185871.54 rows=11324054 width=19) (actual time=0.007..1262.020 rows=11323917 loops=1)
+  Planning Time: 0.041 ms
+  Execution Time: 2006.675 ms
+
+photos:
+  Seq Scan on photos  (cost=0.00..268241.73 rows=5655773 width=267) (actual time=0.007..1125.520 rows=5655463 loops=1)
+  Planning Time: 0.038 ms
+  Execution Time: 1494.910 ms
