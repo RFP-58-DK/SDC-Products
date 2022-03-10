@@ -1,4 +1,4 @@
-const db = require('../DB');
+const db = require('../db');
 
 module.exports = {
   getProductInfo: (params, callback) => {
