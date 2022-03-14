@@ -11,19 +11,9 @@ app.use(express.urlencoded({
 }));
 
 app.use(express.json({}));
-// app.listen(port, () => {
-//   console.log(`Listening at http://localhost:${port}`)
-// });
 
 app.get('/product_information', (req, res) => {controller.getProductInfo(req, res)});
 
-// app.get('/photos', controller.getPhotos);
-
-// app.get('/features', (req, res) => {controller.getFeatures(req, res)});
-
-// app.get('/skus', controller.getSkus);
-
 app.get('/product_styles', (req, res) => {controller.getProductStyles(req, res)});
 
-//https://app-hrsei-api.herokuapp.com/api/fec2/hr-rfp/products/40344/styles
 module.exports = app;
